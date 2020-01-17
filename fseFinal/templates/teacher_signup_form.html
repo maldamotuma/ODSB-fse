@@ -1,0 +1,84 @@
+{% extends 'confirmationcode.html' %}
+{% block content %}
+<style>
+.all {
+		width: 40%;
+		margin: auto;
+		border: 0.3vw solid #555;
+		padding: 0;
+		overflow: hidden;
+		border-radius: 2%;
+		position: relative;
+		top: 2vw;
+	}
+	.headr {
+		display: block;
+		background: #555;
+		padding: 1vw 2vw;
+		position: relative;
+		text-align: center;
+		font-size: 2vw;
+		font-weight: bold;
+		color: white;
+	}
+	.cont2 {
+		margin-top: 0.8vw;
+		margin-bottom: 0.8vw;
+	}
+	.label {
+		width: 25%;
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+	}
+	.label~input {
+		width: 68%;
+		display: inline-block;
+		border: none;
+		background: #999;
+	}
+	.label, .label~input {
+		padding: 0.8vw 0.5vw;
+		font-size: 1.5vw;
+	}
+	.sbmit {
+		width: 50%;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0.6vw;
+		margin: 0.5vw 0 1vw 0;
+		background: #555;
+		color: white;
+		text-align: center;
+		border: none;
+		font-size: 1.5vw;
+		border-radius: 2%;
+	}
+	.sbmit:hover {
+		background: linear-gradient(to right bottom ,#555,#999);
+	}
+</style>
+<form action="signup_form" method="POST">
+    {% csrf_token %}
+    <div class="all">
+        <div class="cont2">
+            <span class="label">User Name : </span>
+            <input type="text" name="user_name">
+        </div>
+        <div class="cont2">
+            <span class="label">Password : </span>
+            <input type="password" name="password">
+        </div>
+        <div class="cont2">
+                <span class="label">Confirm Password : </span>
+                <input type="password" name="confirm_password">
+        </div>
+        <input type="submit" class="sbmit">
+    </div>
+</form>
+<div><h1>{% for message in messages %}
+
+		<h1>{{ message }}</h1></h1>
+	{% endfor %}</div>
+{% endblock %}

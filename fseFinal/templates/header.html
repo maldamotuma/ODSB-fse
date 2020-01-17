@@ -1,0 +1,129 @@
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			transition: 0.5s;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			background: #e5e5e5;
+		}
+		.nva {
+			width: 100%;
+			background: #333;
+			box-shadow: 0 0 0.5vw 0.3vw #999;
+			overflow: hidden;
+		}
+		.logo {
+			float: left;
+			font-size: 3.5vw;
+			font-weight: 700;
+			position: relative;
+			left: 2%;
+			color: white;
+		}
+		.cont2 {
+			width: 100%;
+			display: block;
+			padding: 0.5vw 0;
+		}
+		.cont li {
+			list-style-type: none;
+			float: right;
+			position: relative;
+			right: 2%;
+		}
+		.cont li div {
+			display: inline-block;
+			font-size: 1.5vw;
+		}
+		.cont li a {
+			text-decoration: none;
+			color: white;
+			font-size: 1.5vw;
+			padding: 1vw 1vw;
+		}
+		.cont li a:hover {
+			background: #777;
+			color: yellow;
+			border-radius: 20%;
+		}
+		.all {
+		width: 40%;
+		margin: auto;
+		border: 0.3vw solid #555;
+		padding: 0;
+		overflow: hidden;
+		border-radius: 2%;
+		position: relative;
+		top: 2vw;
+	}
+	.headr {
+		display: block;
+		background: #555;
+		padding: 1vw 2vw;
+		position: relative;
+		text-align: center;
+		font-size: 2vw;
+		font-weight: bold;
+		color: white;
+	}
+	.label {
+		width: 25%;
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+	}
+	.label~input {
+		width: 68%;
+		display: inline-block;
+		border: none;
+		background: #999;
+	}
+	.label, .label~input {
+		padding: 0.8vw 0.5vw;
+		font-size: 1.5vw;
+	}
+	.sbmit {
+		width: 50%;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0.6vw;
+		margin: 0.5vw 0 1vw 0;
+		background: #555;
+		color: white;
+		text-align: center;
+		border: none;
+		font-size: 1.5vw;
+		border-radius: 2%;
+	}
+	.sbmit:hover {
+		background: linear-gradient(to right bottom ,#555,#999);
+	}
+	</style>
+</head>
+<body>
+	<nav class="nva">
+		<div class="logo">DSB</div>
+		<ol class="cont">
+			<li><a href="logout">logout</a></li>
+			<li><div href="">welcome {{user.first_name }}{{ "  " }}{{user.last_name}}</div></li>
+			<li><a href="">edit account</a></li>
+			<li><a href="accsp">create account for SP</a></li>
+			<li><a href="registerT">register teacher</a></li>
+		</ol>
+	</nav>
+	<div>you loggedin as admin</div>
+	{% block content %}
+
+	{% endblock %}
+</body>
+</html>
+{% else %}
+<a href="login">login first</a>
+{% endif %}

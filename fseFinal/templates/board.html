@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			transition: 0.5s;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.nva {
+			width: 100%;
+			background: #555;
+			box-shadow: 0 0 0.5vw 0.3vw #999;
+			overflow: hidden;
+		}
+		.logo {
+			float: left;
+			font-size: 3.5vw;
+			font-weight: 700;
+			position: relative;
+			left: 2%;
+			color: white;
+		}
+		.cont li {
+			list-style-type: none;
+			float: right;
+			position: relative;
+			right: 2%;
+		}
+		.cont li div {
+			display: inline-block;
+			font-size: 1.5vw;
+		}
+		.cont li a {
+			text-decoration: none;
+			color: white;
+			font-size: 1.5vw;
+			padding: 1vw 1vw;
+		}
+		.cont li a:hover {
+			background: #777;
+			color: yellow;
+			border-radius: 15%;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nva">
+		<div class="logo">DSB</div>
+		<ol class="cont">
+			<li><a href="">Logout</a></li>
+			<li><a href="">Edit Account</a></li>
+			<li><a href="">Post</a></li>
+			<li><a href="">Posts</a></li>
+			<li><a href="dash">Suggestions</a></li>
+			<li><a href="">Welcome {{user.first_name}}{{"  "}}{{user.last_name}}{{"  "}}you logged in as {{"  "}}{{rol.role}}</a></li>
+		</ol>
+	</nav>
+	{% block content %}
+	
+	{% endblock %}
+</body>
+</html>
