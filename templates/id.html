@@ -1,0 +1,14 @@
+{% extends 'reqform.html' %}
+{% block content %}
+{% for message in messages %}
+	<h1>{{ message }}</h1>
+	{% endfor %}
+<div class="cn">
+	<form action="id" method="POST">
+		{% csrf_token %}
+		<span class="lbl">Enter ID</span>
+		<input type="text" name="id">
+		<input type="submit" class="inpt">
+		</form>
+	</div>
+{% endblock %}

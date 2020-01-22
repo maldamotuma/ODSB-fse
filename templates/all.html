@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>online suggestion box</title>
+	<style>
+		* {
+			border: none;
+			outline: none;
+			transition: 0.3s;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #e5e5e5;
+		}
+		.menu_container {
+			width: 25%;
+			background: #14213d;
+			position: relative;
+			top: 40vh;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			overflow: hidden;
+			border-radius: 1vw;
+		}
+		a,.drop_down {
+			display: block;
+			width: 100%;
+			text-decoration: none;
+			font-size: 1.5vw;
+			font-weight: bold;
+			color: #ffffff;
+			padding: 1vw 0.5vw;
+			cursor: pointer;
+			border-radius: 1vw;
+		}
+		.drop_down_content a {
+			padding-left: 1vw;
+			margin-left: 3vw;
+		}
+		.drop_down_content {
+			display: none;
+		}
+		a:hover,.drop_down:hover {
+			background: #e5e5e5;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div class="menu_container">
+		<a href="login">login</a>
+		<span class="drop_down" onclick="display_function()">signup</span>
+		<div class="drop_down_content" id="d2">
+			<a href="requestFRSP">teacher</a>
+			<a href="id">student</a>
+		</div>
+	</div>
+	<script>
+		function display_function(){
+			var x = document.getElementById('d2');
+			x.style.display = "block";
+		} 
+	</script>
+</body>
+</html>

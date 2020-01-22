@@ -1,0 +1,12 @@
+{% extends 'heads.html' %}
+{% block content %}
+{% for post in posts %}
+<div class="suggestion_container">
+    <div class="inner_container"><span class="lbl">Posted from : </span><span class="innner">{{post.name}}</span></div>
+    <div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{post.idea}}</span></div>
+    <div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{post.given_time}}</span></div>
+    <div class="buttons"><a >like</a><a>dislike</a></div>
+    <div class="replay"><input type="text" placeholder="replay"></div>
+</div>
+{% endfor %}
+{% endblock %}

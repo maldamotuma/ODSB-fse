@@ -1,0 +1,128 @@
+{% extends 'header.html' %}
+{% block content %}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .main_container {
+        overflow: hidden;
+        width: 50%;
+        background: whitesmoke;
+        padding: 0;
+        margin-left: 0.5vw;
+        border: 1px solid #777;
+        border-radius: 2vw;
+        float: left;
+        position: relative;
+    }
+    .main_container .input {
+        
+    }
+    .main_container .inner {
+        display: block;
+        width: 25%;
+    }
+    .main_input_container {
+    }
+    .input_container {
+        display: block;
+        width: 100%;
+        position: relative;
+        margin: auto;
+        padding: 0;
+        float: none;
+    }
+    .input_container select, .input_container .submt {
+        display: inline-block;
+        width: 25%;
+        padding: 0;
+        margin: 0;
+        float: left;
+        border: none;
+        padding: 0.96vw 0.3vw;
+        font-size: 1.3vw;
+    }
+    .input_container .submt {
+        width: 15%;
+        background: #777;
+        color: white;
+        height: 100%;
+        padding: 1vw 0.3vw;
+    }
+    .input_container .submt:hover {
+        background: #14213d;
+        color: white
+    }
+    .input_container .search {
+        display: inline-block;
+        width: 60%;
+        padding: 0;
+        margin: 0;
+        float: left;
+        border: none;
+        padding: 1vw 0.3vw;
+        font-size: 1.3vw;
+        border-left: 1px solid #999;
+    }
+    .input_container .search:focus {
+        border-left: 1px solid #14213d;
+        outline: -1px solid #14213d;
+    }
+    .suggestions {
+        display: block;
+        width: 50%;
+        margin: auto;
+        background: white;
+        position: relative;
+        border-radius: 1vw;
+        padding: 0;
+        font-size: 1.3vw;
+        overflow: hidden;
+    }
+    .suggestions hr {
+        width: 100%;
+        margin: 0.5vw auto 0;
+    }
+    .suggestions span {
+        font-weight: bold;
+    }
+    .suggestions .inner_all {
+        position: relative;
+        margin: 1vw;
+        top: 0.2vw;
+    }
+</style>
+    <form action="see_suggestions" method="POST" class="main_container">
+        {% csrf_token %}
+       <div class="input_container">
+           <select  name="who">
+               <option value="teacher">teacher</option>
+               <option value="service provider" >service provider</option>
+           </select>
+           <input type="text" class="search" placeholder="user name" name="user_name" required>
+           <input type="submit" value="display" class="submt">
+       </div>
+    </form>
+    <br /><br /><br />
+    <div class="suggestions">
+        {% for suggestion in Suggestions %}
+        <div class="inner_all">
+        <div class="inner"><span>Idea </span>{{suggestion.idea}}</div>
+        <div class="inner"><span>Giver Id </span><a href="see_suggestions?ID={{suggestion.giver_id}}">{{suggestion.giver_id}}</a></div>
+        <div class="inner"><span>Given At </span>{{suggestion.given_time}}</div>
+        <hr />
+        </div>
+        {% endfor %}
+    </div>
+    {% if student %}
+    <div class="suggestions">
+        <div class="inner_all">
+        <div class="inner"><span>ID </span>{{student.student_id}}</div>
+        <div class="inner"><span>Name </span>{{Student_detail.first_name}}{{' '}}{{Student_detail.last_name}}</div>
+        <div class="inner"><span>Department </span>{{student.department}}</div>
+        <div class="inner"><span>Year </span>{{student.year}}</div>
+        <div class="inner"><span>Email </span>{{student.email}}</div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

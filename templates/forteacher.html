@@ -1,0 +1,153 @@
+{% extends 'heads.html' %}
+{% block content %}
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	form {
+		width: 40%;
+		margin: 1.5vw auto;
+		border: 0.2vw solid #14213d;
+		overflow: hidden;
+		position: relative;
+		background-color: #ffffff;
+	}
+	.lbel {
+		padding: 0.5vw;
+		font-size: 1.5vw;
+	}
+	.header {
+		display: block;
+		text-align: center;
+		padding: 1vw;
+		background-color: #14213d;
+		color: white;
+		font-size: 2vw;
+		font-weight: bold;
+	}
+	.cnt {
+		display: block;
+		width: 100%;
+		margin-top: 1vw;
+	}
+	span.lbl {
+		display: inline-block;
+	}
+	.inpt {
+		width: 70%;
+		display: inline-block;
+	}
+	.me {
+		display: block;
+		padding: 0.5vw;
+	}
+	.me:hover {
+		background: #ccc;
+		color: #555;
+	}
+	.lbl {
+		width: 100%;
+		background: #ddd;
+		padding: 0.5vw;
+		font-size: 1.5vw;
+		font-weight: bold;
+		color: #555;
+		text-align: center;
+	}
+	textarea {
+		width: 90%;
+		height: 10vw;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		margin: 1vw 0.5vw 1vw 0.5vw;
+		font-size: 1.5vw;
+		background: #888;
+		resize: none;
+	}
+	.sbmit {
+		width: 40%;
+		font-size: 1.5vw;
+		font-weight: bold;
+		background: linear-gradient(to right bottom, #14213d, #fca311);
+		color: #333;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-bottom: 1vw;
+		padding: 0.5vw;
+		border: none;
+		color: #ffffff;
+	}
+	.alrt {
+		background-color: #fca311;
+		padding: 1vw;
+		text-align: center;
+		display: inline-block;
+		width: 50%;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		margin: 0;
+		color: #333;
+	}
+	.check_mark {
+		font-size: 1.8vw;
+		margin-left: 0.5vw;
+		cursor: pointer;
+	}
+	#cbox {
+		display: inline-block;
+		padding: 1vw;
+		transform: scale(1.5);
+		margin-left: 0.5vw;
+		cursor: pointer;
+	}
+</style>
+<div><h1>{% for message in messages %}
+	<h1 class="alrt">{{ message }}</h1 class="alrt"></h1>
+{% endfor %}</div>
+    <form action="give_suggestion" method="POST">
+		{% csrf_token %}
+		<div class="header">suggestion for teacher</div>
+    	<div class="cnt">
+    		<span class="lbel">choose teacher</span>
+    		<select  name="service" class="inpt" style="padding: 0.8vw 0.5vw;font-size: 1.5vw;background: #ddd;">
+				{% for instructor in instructors %}
+				<option value="{{instructor.id}}">{{instructor.first_name}}{{" "}}{{instructor.last_name}}</option>
+				{% endfor %}
+    		</select>
+		</div>
+		<div class="check_box">
+			<label for="cbox" class="check_mark">private </label>
+            <input type="radio"  id="cbox" value='private' name="private">
+		</div>
+		<input type="radio"  id="cbox" value='public' name="private" checked="checked" style="display: none;">
+    	<div class="cnt">
+    		<span class="lbl" style="width: 100%;">How is Teaching  at all</span>
+    		<label class="me">
+    			<input type="radio" name="overall" value="Poor" class="rad">
+    			Poor
+    		</label>
+    		<label class="me">
+    			<input type="radio" name="overall" value="Normal" class="rad">
+    			Normal
+    		</label>
+    		<label class="me">
+    			<input type="radio" name="overall" value="Good" class="rad">
+    			Good
+    		</label>
+    		<label class="me">
+    			<input type="radio" name="overall" value="Excellent" class="rad">
+    			Excellent
+    		</label>
+    	</div>
+    	<div class="cnt">
+    		<span class="lbl" style="width: 100%;">Enter your Idea here</span>
+    		<textarea name="suggestion"></textarea name="suggestion">
+		</div>
+		<input type="hidden" name="typ" value="teacher">
+    	<input type="submit" class="sbmit">
+    </form>
+{% endblock %}

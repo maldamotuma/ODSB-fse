@@ -1,0 +1,13 @@
+{% extends 'heads.html' %}
+{% block content %}
+{% for given in givens %}
+<div class="suggestion_container">
+    <div class="inner_container"><span class="lbl">Given for : </span><span class="innner">{{given.name}}</span></div>
+    <div class="inner_container"><span class="lbl">Overall : </span><span class="innner">{{given.overall}}</span></div>
+    <div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{given.idea}}</span></div>
+    <div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{given.given_time}}</span></div>
+    <div class="buttons"><a>like</a><a>dislike</a></div>
+    <div class="replay"><input type="text" placeholder="replay"></div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #e5e5e5;
+		}
+		form {
+			width: 40%;
+			position: relative;
+			top: 2vw;
+			border: 0.2vw solid #14213d;
+			margin: auto;
+			border-radius: 2%;
+			background: #ffffff;
+		}
+		.hdr {
+			position: relative;
+			padding: 1vw;
+			font-size: 2vw;
+			background: #333;
+			color: #fff;
+			text-align: center;
+			display: block;
+			font-weight: bold;
+		}
+		.cnt {
+			position: relative;
+			display: block;
+			margin: 0.8vw 0;
+		}
+		.lbl, .lbl ~ input {
+			padding: 0.8vw 0.5vw;
+			font-size: 1.5vw;
+		}
+		.lbl {
+			width: 20%;
+			display: inline-block;
+		}
+		.lbl ~ input {
+			width: 70%;
+			display: inline-block;
+			background: #999;
+			border: none;
+			outline: none;
+		}
+		.lbl ~ input:focus {
+			border: none;
+			outline: none;
+			background: #e5e5e5;
+		}
+		.sbmt {
+			padding: 1vw;
+			font-size: 1.5vw;
+			background: #14213d;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 70%;
+			margin: 1vw;
+			border: 0.1vw solid #14213d;
+			color: white;
+			border-radius: 2vw;
+			transition: 0.3s;
+		}
+		.sbmt:hover {
+			background: white;
+			color: #333;
+			border-left-width: 1vw;
+			border-right-width: 1vw;
+			font-weight: bold;
+			width: 75%;
+		}
+		.alrt {
+			background-color: #fca311;
+			padding: 1vw;
+			text-align: center;
+			display: inline-block;
+			width: 50%;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			margin: 0;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div class="hdr">ASTU ODSB</div>
+	<div><h1>{% for message in messages %}
+
+		<h1 class="alrt">{{ message }}</h1 class="alrt"></h1>
+	{% endfor %}</div>
+	<form action="login" method="POST">
+		{% csrf_token %}
+		<div class="hdr" style="background-color: #14213d;">LOGIN</div>
+		<div class="cnt">
+			<span class="lbl">user name : </span>
+			<input type="text" name="username">
+		</div>
+		<div class="cnt">
+			<span class="lbl">Password : </span>
+			<input type="Password" name="password">
+		</div>
+		<input class="sbmt" type="submit" value="login">
+	</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends 'header.html' %}
+{% block content %}
+<form action="accsp" method="POST">
+	{% csrf_token %}
+	<div class="all"  style="background: #ffffff;">
+		<div class="headr"  style="background: #14213d;">ACCOUNT CREATION FORM FOR SERVICE PROVIDERS</div>
+	<div class="cont2">
+		<span class="label">User Name : </span>
+		<input type="text" name="uname">
+	</div>
+	<div class="cont2">
+		<span class="label">Service : </span>
+		<input type="text" name="service">
+	</div>
+	<div class="cont2">
+		<span class="label">Office Email : </span>
+		<input type="text" name="email">
+	</div>
+	<div class="cont2">
+		<span class="label">Password : </span>
+		<input type="password" name="Password1">
+	</div>
+	<div class="cont2">
+		<span class="label">Confirm Password : </span>
+		<input type="password" name="Password2">
+	</div>
+	<input type="submit" value="Create Account" class="sbmit">
+	</div>
+</form>
+<div><h1>{% for message in messages %}
+
+		<h1>{{ message }}</h1></h1>
+	{% endfor %}</div>
+{% endblock %}
