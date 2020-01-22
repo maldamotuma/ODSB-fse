@@ -48,6 +48,9 @@ def login(request):
 def confirm(request):
 def sg(request):
 def logout(request):
+        auth.logout(request)
+	messages.info(request,'you logged out successfully')
+	return redirect('login')
 def forteacher(request):
 def forsp(request):
 def dash(request):
