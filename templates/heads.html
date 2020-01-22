@@ -1,0 +1,158 @@
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			transition: 0.5s;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #e5e5e5;
+		}
+		.nva {
+			width: 100%;
+			background: #333;
+			box-shadow: 0 0 0.5vw 0.3vw #000000;
+			overflow: hidden;
+		}
+		.logo {
+			float: left;
+			font-size: 3.5vw;
+			font-weight: 700;
+			position: relative;
+			left: 2%;
+			color: white;
+		}
+		.cont li {
+			list-style-type: none;
+			float: right;
+			position: relative;
+			right: 2%;
+		}
+		.cont li div {
+			display: inline-block;
+			font-size: 1.5vw;
+		}
+		.cont li a {
+			text-decoration: none;
+			color: white;
+			font-size: 1.5vw;
+			padding: 1vw 1vw;
+		}
+		.cont li a:hover {
+			color: yellow;
+			border-radius: 15%;
+		}
+		.suggestion_container {
+			width: 40%;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 1vw;
+			background: white;
+			margin-top: 0.5vw;
+			box-sizing: border-box;
+			border: 2px solid white;
+			border-radius: 1vw;
+		}
+		.suggestion_container:hover {
+			border: 2px solid blue;
+		}
+		.lbl, .innner {
+			font-size: 1.5vw;
+			color: #333;
+		}
+		.lbl {
+			font-weight: bold;
+		}
+		.buttons {
+			overflow: hidden;
+			margin-top: 0.7vw;
+		}
+		.buttons a {
+			width: 20% !important;
+			display: inline-block !important;
+			margin-left: 0.5vw;
+			padding: 0.5vw;
+			font-size: 1.2vw;
+			text-decoration: none;
+			background: #4433ee;
+			color: whitesmoke;
+			cursor: pointer;
+			border: 1px solid #4433ee;
+			transition: 0.3s;
+			text-align: center;
+			float: right;
+			border-radius: 0.3vw;
+		}
+		.buttons a:hover {
+			background: whitesmoke;
+			color: #4433ee;
+			border: 1px solid #4433ee;
+		}
+		.replay {
+			position: relative;
+			top: 1vw;
+			margin-bottom: 1vw;
+		}
+		.replay input {
+			width: 80%;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 0.3vw 1vw;
+			font-size: 1.5vw;
+			border-radius: 0.9vw;
+			border: 1px solid #999;
+			transition: 0.3s;
+		}
+		.replay input:focus {
+			outline: none;
+			border: 1px solid green;
+			border-left-width: 0.3vw;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nva">
+		<div class="logo">DSB</div>
+		<ol class="cont">
+			<li><a href="logout">Logout</a></li>
+			<li><span href="">welcome {{user.first_name}}{{' '}}{{user.last_name}}</span></li>
+			<li><a href="forteacher">Suggestion for teacher</a></li>
+			<li><a href="">my suggestions</a></li>
+			<li><a href="forsp">Sggestion for SP</a></li>
+			<li><a href="posts">Posts</a></li>
+			<li><a href="suggestions">Suggestions</a></li>
+			<li><a href="studhome">Home</a></li>
+		</ol>
+	</nav>
+	<span>you logged in as student{{" "}}{{student_id}}</span>
+	{% for given in givens %}
+	<div class="suggestion_container">
+		<div class="inner_container"><span class="lbl">Given for : </span><span class="innner">{{given.name}}</span></div>
+		<div class="inner_container"><span class="lbl">Overall : </span><span class="innner">{{given.overall}}</span></div>
+		<div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{given.idea}}</span></div>
+		<div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{given.given_time}}</span></div>
+		<div class="buttons"><a href="">like</a><a href="">dislike</a></div>
+		<div class="replay"><input type="text" placeholder="replay"></div>
+	</div>
+	{% endfor %}
+	{% for post in posts %}
+	<div class="suggestion_container">
+		<div class="inner_container"><span class="lbl">Posted from : </span><span class="innner">{{post.name}}</span></div>
+		<div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{post.idea}}</span></div>
+		<div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{post.given_time}}</span></div>
+		<div class="buttons"><a href="">like</a><a href="">dislike</a></div>
+		<div class="replay"><input type="text" placeholder="replay"></div>
+	</div>
+	{% endfor %}
+	{% block content %}
+	
+	{% endblock %}
+</body>
+</html>
+{% endif %}

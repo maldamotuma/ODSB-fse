@@ -1,0 +1,14 @@
+{% extends 'reqform.html' %}
+{% block content %}
+{% for message in messages %}
+	<h1>{{ message }}</h1>
+	{% endfor %}
+<div class="cn">
+	<form action="requestFRSP" method="POST">
+		{% csrf_token %}
+		<span class="lbl">Enter Email</span>
+		<input type="email" name="email">
+		<input type="submit" class="inpt">
+		</form>
+	</div>
+{% endblock %}

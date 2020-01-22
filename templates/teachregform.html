@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+{% block content %}
+<form action="registerT" method="POST">
+	{% csrf_token %}
+	<div class="all">
+		<div class="headr">TEACHER REGISTRATION FORM</div>
+	<div class="cont2">
+		<span class="label">First Name : </span>
+		<input type="text" name="fname">
+	</div>
+	<div class="cont2">
+		<span class="label">Last Name : </span>
+		<input type="text" name="lname">
+	</div>
+	<div class="cont2">
+		<span class="label">Department : </span>
+		<input type="text" name="department">
+	</div>
+	<div class="cont2">
+		<span class="label">Email : </span>
+		<input type="text" name="email">
+	</div>
+	<input type="submit" value="Register" class="sbmit">
+	</div>
+</form>
+<div><h1>{% for message in messages %}
+
+		<h1>{{ message }}</h1></h1>
+	{% endfor %}</div>
+{% endblock %}

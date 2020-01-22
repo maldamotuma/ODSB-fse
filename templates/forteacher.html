@@ -1,6 +1,10 @@
 {% extends 'heads.html' %}
 {% block content %}
 <style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
 	form {
 		width: 40%;
 		margin: 1.5vw auto;
@@ -87,6 +91,18 @@
 		transform: translateX(-50%);
 		margin: 0;
 		color: #333;
+	}
+	.check_mark {
+		font-size: 1.8vw;
+		margin-left: 0.5vw;
+		cursor: pointer;
+	}
+	#cbox {
+		display: inline-block;
+		padding: 1vw;
+		transform: scale(1.5);
+		margin-left: 0.5vw;
+		cursor: pointer;
 	}
 </style>
 <div><h1>{% for message in messages %}

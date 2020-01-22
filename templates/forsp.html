@@ -88,18 +88,30 @@
 		margin: 0;
 		color: #333;
 	}
+	.check_mark {
+		font-size: 1.8vw;
+		margin-left: 0.5vw;
+		cursor: pointer;
+	}
+	#cbox {
+		display: inline-block;
+		padding: 1vw;
+		transform: scale(1.5);
+		margin-left: 0.5vw;
+		cursor: pointer;
+	}
 </style>
 <div><h1>{% for message in messages %}
 	<h1 class="alrt">{{ message }}</h1 class="alrt"></h1>
 {% endfor %}</div>
     <form action="give_suggestion" method="POST">
 		{% csrf_token %}
-		<div class="header">suggestion for teacher</div>
+    	<div class="header">suggestion for Service provider</div>
     	<div class="cnt">
-    		<span class="lbel">choose teacher</span>
-    		<select  name="service" class="inpt" style="padding: 0.8vw 0.5vw;font-size: 1.5vw;background: #ddd;">
-				{% for instructor in instructors %}
-				<option value="{{instructor.id}}">{{instructor.first_name}}{{" "}}{{instructor.last_name}}</option>
+    		<span class="lbel">choose service provider</span>
+    		<select name="service" class="inpt" style="padding: 0.8vw 0.5vw;font-size: 1.5vw;background: #ddd;">
+    			{% for servicer in service_providers %}
+				<option value="{{servicer.id}}">{{servicer.service}}</option>
 				{% endfor %}
     		</select>
 		</div>
@@ -107,9 +119,9 @@
 			<label for="cbox" class="check_mark">private </label>
             <input type="radio"  id="cbox" value='private' name="private">
 		</div>
-		<input type="radio"  id="cbox" value='public' name="private" checked="checked" style="display: none;">
+        <input type="radio"  id="cbox" value='public' name="private" checked="checked" style="display: none;">
     	<div class="cnt">
-    		<span class="lbl" style="width: 100%;">How is Teaching  at all</span>
+    		<span class="lbl" style="width: 100%;">How is The Service  at all</span>
     		<label class="me">
     			<input type="radio" name="overall" value="Poor" class="rad">
     			Poor
@@ -123,15 +135,15 @@
     			Good
     		</label>
     		<label class="me">
-    			<input type="radio" name="overall" value="Excellent" class="rad">
+    			<input type="radio" name="overall" value="Excellent" class="Excellent">
     			Excellent
     		</label>
     	</div>
     	<div class="cnt">
     		<span class="lbl" style="width: 100%;">Enter your Idea here</span>
-    		<textarea name="suggestion"></textarea name="suggestion">
+    		<textarea name="suggestion"></textarea>
 		</div>
-		<input type="hidden" name="typ" value="teacher">
+		<input type="hidden" name="typ" value="service provider">
     	<input type="submit" class="sbmit">
     </form>
 {% endblock %}

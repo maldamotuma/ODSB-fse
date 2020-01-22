@@ -1,0 +1,25 @@
+{% extends 'teachersdashboard.html' %}
+{% block content %}
+<div class="suggestion_container post_box">
+    <div><h1>{% for message in messages %}
+        <h1 class="alrt">{{ message }}</h1 class="alrt"></h1>
+    {% endfor %}</div>
+   <form action="teacher_post" method="POST">
+       {% csrf_token %}
+       <textarea name="post" id="" style="width: 100%;resize: none;" rows="10"></textarea>
+       <input type="hidden" value="teacher" name="posted_from">
+       <input type="hidden" value="{{ user.id }}" name="poster_id">
+       <input type="submit" value="post" class="post">
+   </form>
+</div>
+<div class="left">
+{% for post in posts %}
+	<div class="suggestion_container list_of_posts">
+		<div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{post.idea}}</span></div>
+		<div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{post.given_time}}</span></div>
+        <div class="buttons"><button>like</button><button>dislike</button></div>
+        <div class="replay"><input type="button" value="replies"></div>
+	</div>
+    {% endfor %}
+</div>
+{% endblock %}

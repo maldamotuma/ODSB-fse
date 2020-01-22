@@ -1,0 +1,16 @@
+{% extends 'reqform.html' %}
+{% block content %}
+<h1>we have sent confirmation code to {{"  "}}{{ email }}{{"  "}} <a href="requestFRSP">click here</a> if it is not correct email</h1>
+<div><h1>{% for message in messages %}
+
+		<h1>{{ message }}</h1></h1>
+	{% endfor %}</div>
+<div class="cn">
+	<form action="confirm" method="POST">
+		{% csrf_token %}
+		<span class="lbl">Enter The Code Sent To your Email</span>
+		<input type="number" name="confirmation_code">
+		<input type="submit" class="inpt">
+	</form>
+	</div>
+{% endblock %}

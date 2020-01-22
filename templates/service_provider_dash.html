@@ -1,0 +1,174 @@
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		* {
+			transition: 0.5s;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #e5e5e5;
+		}
+		.nva {
+			width: 100%;
+			background: #333;
+			box-shadow: 0 0 0.5vw 0.3vw #000000;
+			overflow: hidden;
+		}
+		.logo {
+			float: left;
+			font-size: 3.5vw;
+			font-weight: 700;
+			position: relative;
+			left: 2%;
+			color: white;
+		}
+		.cont li {
+			list-style-type: none;
+			float: right;
+			position: relative;
+			right: 2%;
+		}
+		.cont li div {
+			display: inline-block;
+			font-size: 1.5vw;
+		}
+		.cont li a {
+			text-decoration: none;
+			color: white;
+			font-size: 1.5vw;
+			padding: 1vw 1vw;
+		}
+		.cont li a:hover {
+			background: #777;
+			color: yellow;
+			border-radius: 15%;
+		}
+		.suggestion_container {
+			width: 40%;
+			margin: 0.5vw;
+			box-shadow: 1px 2px 0.5vw 0.2vw #555;
+			padding: 1vw;
+		}
+		.middle {
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.suggestion_container~hr {
+			width: 30%;
+			height: 0.6vw;
+			border-radius: 0.3vw;
+			border: none;
+			background: #ffffba;
+		}
+		.lbl, .innner {
+			font-size: 1.5vw;
+			color: #333;
+		}
+		.lbl {
+			font-weight: bold;
+		}
+		.buttons {
+			float: right;
+			width: 30%;
+		}
+		.buttons button {
+			width: 40%;
+			margin-left: 0.1vw;
+			padding: 0.5vw;
+			font-size: 1.2vw;
+		}
+		.replay {
+			position: relative;
+			top: 1vw;
+			margin-bottom: 1vw;
+		}
+		.replay input {
+			width: 80%;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 0.3vw 1vw;
+			font-size: 1.5vw;
+			border-radius: 0.9vw;
+			border: 1px solid #999;
+			transition: 0.3s;
+		}
+		.replay input:focus {
+			outline: none;
+			border: 1px solid green;
+			border-left-width: 0.3vw;
+		}
+		.post {
+			width: 100%;
+			border: none;
+			padding: 0.5vw;
+			text-align: center;
+			font-size: 1.5vw;
+			font-weight: bold;
+			background: rgb(29, 8, 216);
+			color: white;
+			transition: 0.2s;
+			box-sizing: border-box;
+			border: 0.1vw solid rgb(29, 8, 216);
+			border-radius: 1.5vw;
+		}
+		.post:hover {
+			background: white;
+			color: #333;
+		}
+		.alrt {
+			background-color: #fca311;
+			padding: 1vw;
+			text-align: center;
+			display: inline-block;
+			width: 80%;
+			margin: 0 1vw;
+			color: #333;
+		}
+		.left {
+			float: left;
+			width: 50%;
+			margin-left: 3vw;
+		}
+		.post_box {
+			float: left;
+			margin-left: 2.5vw;
+		}
+		.list_of_posts {
+			width: 90%;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nva">
+		<div class="logo">DSB</div>
+		<ol class="cont">
+			<li><a href="logout">logout</a></li>
+			<li><div href="">welcome {{user.username }}{{ "  " }}{{user.last_name}}</div></li>
+			<li><a href="">edit account</a></li>
+			<li><a href="service_provider_post">posts</a></li>
+			<li><a href="service_provider_dash">suggestions</a></li>
+		</ol>
+	</nav>
+	<div>you loggedin as Service provider</div>
+	{% for suggestion in suggestions %}
+	<div class="suggestion_container middle">
+		<div class="inner_container"><span class="lbl">Overall : </span><span class="innner">{{suggestion.overall}}</span></div>
+		<div class="inner_container"><span class="lbl">Idea : </span><span class="innner">{{suggestion.idea}}</span></div>
+		<div class="inner_container time"><span class="lbl">given at : </span><span class="innner">{{suggestion.given_time}}</span></div>
+		<div class="buttons"><button>like</button><button>dislike</button></div>
+		<div class="replay"><input type="text" placeholder="replay"></div>
+	</div>
+	<hr />
+	{% endfor %}
+	{% block content %}
+
+	{% endblock %}
+</body>
+</html>
+{% endif %}

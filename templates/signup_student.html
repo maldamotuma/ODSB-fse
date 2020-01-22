@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>signup_student</title>
+    <style>
+        * {
+			border: none;
+			outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #e5e5e5;
+        }
+        .container {
+            width: 40%;
+            border-radius: 1vw;
+            background: white;
+            position: relative;
+            top: 50vh;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 1vw;
+        }
+        .inner_container {
+            padding: 0.5vw;
+        }
+        .inner_container label {
+            display: inline-block;
+            text-align: right;
+            width: 15%;
+            color: #012d35;
+            font-weight: bold;
+            font-size: 1.15vw;
+        }
+        .inner_container input {
+            background: #fefefe;
+            width: 80%;
+            font-size: 1.3vw;
+            padding: 0.5vw;
+            color: #333;
+            margin-left: 0.5vw;
+            border-radius: 0.5vw;
+            border: 1px solid #ddd;
+        }
+        .inner_container input:focus {
+            border: 1px solid green;
+            background: white;
+        }
+        .sbmt {
+			padding: 0.5vw;
+			font-size: 1.3vw;
+			background: #14213d;
+			position: relative;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 70%;
+			margin: 0.5vw;
+			border: 0.1vw solid #14213d;
+			color: white;
+			border-radius: 1vw;
+            transition: 0.3s;
+		}
+		.sbmt:hover {
+			background: white;
+			color: #333;
+			border-left-width: 1vw;
+			border-right-width: 1vw;
+			font-weight: bold;
+			width: 75%;
+        }
+        .alert {
+            font-size: 1.3vw;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="alert">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </div>
+        <form action="signup_student" method="POST">
+            {% csrf_token %}
+            <div class="inner_container">
+                <label for="id" >Id</label>
+                <input type="text" value="{{ id }}" name="student_id" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="user_name">User Name</label>
+                <input type="text" name="user_name" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="email">Email</label>
+                <input type="email" name="email" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="department">Department</label>
+                <input type="text" name="department" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="year">Year</label>
+                <input type="number" min="1" max="5" name="year" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="password1">Password</label>
+                <input type="password" name="password1" required="required">
+            </div>
+            <div class="inner_container">
+                <label for="password2">Confirm Password</label>
+                <input type="password"name="password2" required="required">
+            </div>
+            <input type="submit" value="confirm" class="sbmt">
+        </form>
+    </div>
+</body>
+</html>
